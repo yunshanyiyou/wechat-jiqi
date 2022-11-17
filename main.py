@@ -54,7 +54,13 @@ def get_weather(region):
     response = get(weather_url, headers=headers).json()
     # 天气
     weather = response["now"]["text"]
-    # 当前温度
+    if weather.find('雨') >= 0:
+        tip = "记得带伞哦"
+    elif weather == "晴":
+        tip = "带伞可以防晒哟"
+    else:
+        tip = "今天也要元气满满的"
+   # 当前温度
     temp = response["now"]["temp"] + u"\N{DEGREE SIGN}" + "C"
     # 风向
     wind_dir = response["now"]["windDir"]
